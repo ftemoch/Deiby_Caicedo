@@ -24,7 +24,15 @@
                 <td>@cliente.Nombre</td>                
                 <td>@cliente.Apellido</td>                
                 <td>@cliente.Salario</td>                
-                <td>@cliente.Activo</td>
+                
+                @if(cliente.Activo == true)
+                {
+                    <td>Activo</td>
+                }
+                else
+                {
+                    <td>Inactivo</td>
+                }
             </tr>
         }
     </tbody>
