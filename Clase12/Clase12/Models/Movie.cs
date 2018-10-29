@@ -9,5 +9,9 @@ namespace Clase12.Models
     {
         public int ID { get; set; }
         public String Nombre { get; set; }
+
+        
+        public TipoPelicula tipoPelicula { get; set; }
+        public byte IdTipoPelicula { get; set; }
     }
 }

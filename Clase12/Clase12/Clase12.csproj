@@ -218,14 +218,34 @@
     <Compile Include="Migrations\201810210121081_cilo.Designer.cs">
       <DependentUpon>201810210121081_cilo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810271415380_CreacionCliente.cs" />
+    <Compile Include="Migrations\201810271415380_CreacionCliente.Designer.cs">
+      <DependentUpon>201810271415380_CreacionCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810271416321_llenarDatos.cs" />
+    <Compile Include="Migrations\201810271416321_llenarDatos.Designer.cs">
+      <DependentUpon>201810271416321_llenarDatos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810272150276_creacionPelicula.cs" />
+    <Compile Include="Migrations\201810272150276_creacionPelicula.Designer.cs">
+      <DependentUpon>201810272150276_creacionPelicula.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810272158350_llenarDatosMovie.cs" />
+    <Compile Include="Migrations\201810272158350_llenarDatosMovie.Designer.cs">
+      <DependentUpon>201810272158350_llenarDatosMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\TipoCliente.cs" />
+    <Compile Include="Models\TipoPelicula.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\NewClienteViewModel.cs" />
+    <Compile Include="ViewModels\NewPeliculaViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -288,6 +308,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Cliente\Lista.cshtml" />
     <Content Include="Views\Movies\ListaMovies.cshtml" />
+    <Content Include="Views\Cliente\Nueva.cshtml" />
+    <Content Include="Views\Movies\Genero.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -317,6 +339,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810210121081_cilo.resx">
       <DependentUpon>201810210121081_cilo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810271415380_CreacionCliente.resx">
+      <DependentUpon>201810271415380_CreacionCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810271416321_llenarDatos.resx">
+      <DependentUpon>201810271416321_llenarDatos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810272150276_creacionPelicula.resx">
+      <DependentUpon>201810272150276_creacionPelicula.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810272158350_llenarDatosMovie.resx">
+      <DependentUpon>201810272158350_llenarDatosMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

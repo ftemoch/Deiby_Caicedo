@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Clase12.Models;
+using Clase12.ViewModels;
 
 namespace Clase12.Controllers
 {
@@ -18,6 +19,7 @@ namespace Clase12.Controllers
         {
             _context.Dispose();
         }
+
         // GET: Cliente
         public ViewResult Lista()
         {
@@ -42,7 +44,25 @@ namespace Clase12.Controllers
             };
         }
 
-    }     
-        
-    
+        public ActionResult Nueva()
+        {
+            var tipoClientes = _context.TipoCliente.ToList();
+            var viewModel = new NewClienteViewModel
+            {
+                TipoClientes= tipoClientes
+            };
+
+            return View(viewModel);
+        }
+        [HttpPost]
+        public ActionResult Create(Cliente cliente)
+        {
+            _context.Clientes.Add(cliente);
+            _context.SaveChanges();
+            return RedirectToAction("Lista", "Cliente");
+        }
+    }
+
 }
+
+
