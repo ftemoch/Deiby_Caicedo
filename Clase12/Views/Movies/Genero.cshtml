@@ -1,0 +1,30 @@
+﻿@model Clase12.ViewModels.NewPeliculaViewModel
+    @{
+        ViewBag.Title = "Genero";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>Genero</h2>
+
+
+    @using (Html.BeginForm("Create", "Movies"))
+    {
+        <div class=" form-group">
+            @Html.LabelFor(m => m.Movie.Nombre)
+            @Html.TextBoxFor(m => m.Movie.Nombre, new { @class = "form-control" })
+
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.Movie.tipoPelicula)
+            @Html.DropDownListFor(m => m.Movie, new SelectList(Model.TipoPeliculas, "Id", "Nombre"), "Seleccione tipo pelicula", new { @class = "form-conttrol" })
+        </div>
+
+       /* <div class=" form-group">
+            @Html.LabelFor(m => m.Movie.tipoPelicula.costoDia)
+            @Html.TextBoxFor(m => m.Movie.tipoPelicula.costoDia, new { @class = "form-control" })
+
+        </div>*/
+        <button type="submit" class="btn btn-primary">GUARDAR</button>
+    }

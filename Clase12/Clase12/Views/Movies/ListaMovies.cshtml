@@ -5,6 +5,9 @@
 }
 
 <h2>ListaMovies</h2>
+<p>
+    @Html.ActionLink("Create new", "Create")
+</p>
 <table class="table table-bordered table-hover">
 <thead>
     <tr>
@@ -18,7 +21,11 @@
     {
         <tr>
             <td>@movie.Nombre</td>
-            
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = movie.ID }) |
+                @Html.ActionLink("Delete", "Borrar", new { id = movie.ID })
+
+            </td>
         </tr>
     }
 </tbody>

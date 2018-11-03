@@ -8,8 +8,8 @@ namespace Clase12.ViewModels
 {
     public class NewPeliculaViewModel
     {
-        public IEnumerable<TipoPelicula> Tipo { get; set; }
+        public IEnumerable<TipoPelicula> TipoPeliculas { get; set; }
         public Movie Movie { get; set; }
-        public List<TipoPelicula> TipoPeliculas { get; internal set; }
+        
     }
 }

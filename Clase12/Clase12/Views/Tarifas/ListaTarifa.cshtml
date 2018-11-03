@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Clase12.Models.Tarifa>
+
+@{
+    ViewBag.Title = "ListaTarifa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ListaTarifa</h2>
+
+<p>
+    @Html.ActionLink("Create New", "NuevaTarifa")
+</p>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Monto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descuento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Monto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descuento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+
+                    @Html.ActionLink("Delete", "Borrar", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

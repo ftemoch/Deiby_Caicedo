@@ -22,8 +22,10 @@ namespace Clase12.Models
     {
         public DbSet<Cliente>Clientes { get; set; }
         public DbSet<Movie>Movies { get; set; }
+        public DbSet<Tarifa>Tarifas { get; set; }
         public DbSet<TipoCliente>TipoCliente { get; set; }
         public DbSet<TipoPelicula>TipoPelicula { get; set; }
+        
 
 
         public ApplicationDbContext()
@@ -35,5 +37,7 @@ namespace Clase12.Models
         {
             return new ApplicationDbContext();
         }
+
+        
     }
 }
