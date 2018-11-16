@@ -143,15 +143,15 @@ namespace Clase12.Controllers
                 TipoClientes = _context.TipoCliente.ToList()
             };
             
-            return View("Nueva", viewModel);
+            return View("Edit", viewModel);
         }
         
-        /*public ActionResult Edit(Cliente cliente)
+        public ActionResult Edit(Cliente cliente)
         {
             _context.Entry(cliente).State=EntityState.Modified;
             _context.SaveChanges();
             return RedirectToAction("Lista", "Cliente");
-        }*/
+        }
     }
 
 }

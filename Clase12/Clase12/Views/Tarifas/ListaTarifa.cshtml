@@ -10,7 +10,7 @@
 <p>
     @Html.ActionLink("Create New", "NuevaTarifa")
 </p>
-<table class="table table-bordered table-hover">
+<table id="Tarifas" class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>
@@ -25,7 +25,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Fecha)
             </th>
-            <th></th>
+            <th></th><th></th>
         </tr>
     </thead>
 
@@ -46,11 +46,34 @@
                     @Html.DisplayFor(modelItem => item.Fecha)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-
-                    @Html.ActionLink("Delete", "Borrar", new { id = item.ID })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) 
                 </td>
+
+                  <!-- <td> @Html.ActionLink("Delete", "Borrar", new { id = item.ID })</td>-->
+                <td>
+                    <button  data-customer-id="@item.ID" class="btn-link js-delete delete"> Borrar</button>
+                </td>
+                
+                
             </tr>
         }
     </tbody>
 </table>
+@section scripts
+{
+   <script>
+       $(document).ready(function () {
+           $("#Tarifas").DataTable();
+           $(".delete").click(function (){
+               var button = $(this);
+               if (confirm("seguro que quiere borrar")) {
+                   $.ajax({
+                       url: "/Tarifas/Borrar/" + button.attr("data-customer-id"),
+                       success: function () {
+                           button.parents("tr").remove();
+                       }
+                   });
+               }
+           });
+       });
+   </script> }

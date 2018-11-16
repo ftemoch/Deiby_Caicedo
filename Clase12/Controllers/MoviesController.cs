@@ -11,57 +11,63 @@ namespace Clase12.Controllers
     public class MoviesController : Controller
     {
         private ApplicationDbContext _context;
-
         public MoviesController()
         {
             _context = new ApplicationDbContext();
+
         }
+
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
         }
 
-        // GET: Movie
-        public ViewResult ListaMovies()
+        //crea vista
+        public ActionResult ListaPeliculas()
         {
-            //var movies = GetMovies();
-            var Movies = _context.Movies.ToList();
-            return View(Movies);
-
-        }
-        public ActionResult Details(int id)
-        {
-            //var movies = GetMovies().SingleOrDefault(c => c.ID == id);
-            var movies = _context.Movies.SingleOrDefault(c => c.ID == id);
-            if (movies == null)
-                return HttpNotFound();
-            return View(movies);
-        }
-        private IEnumerable<Movie> GetMovies()
-        {
-            return new List<Movie>
+            var genero = _context.Generos.ToList();
+            var viewModel = new NewMovieViewModel
             {
-                 //new Movie {ID=1, Nombre= "Sherk III"},
-                 //new Movie {ID=2, Nombre= "American Pie"}
-            };
-        }
-        public ActionResult Genero()
-        {
-            var tipoPelicula = _context.TipoPelicula.ToList();
-            var viewModel = new NewPeliculaViewModel
-            {
-                TipoPeliculas = tipoPelicula
+                Generos = genero
             };
 
             return View(viewModel);
         }
-        [HttpPost]
+        //Encadenar datos
         public ActionResult Create(Movie movie)
         {
             _context.Movies.Add(movie);
             _context.SaveChanges();
-            return RedirectToAction("ListaMovies", "Movies");
+
+            return RedirectToAction("Peliculas", "Movies");
         }
 
+        // GET: Clientes
+        public ViewResult Peliculas()
+        {
+            // var clientes =GetClientes();
+            var peliculas = _context.Movies.ToList();
+            return View(peliculas);
+        }
+
+        public ActionResult Details(int id)
+        {
+            // var cliente= GetClientes().SingleOrDefault(c=> c.ID==id);
+            var pelicula = _context.Movies.SingleOrDefault(c => c.Id == id);
+            if (pelicula == null)
+
+                return HttpNotFound();
+            return View(pelicula);
+        }
+
+        private IEnumerable<Movie> GetMovies()
+        {
+            return new List<Movie>
+            {
+                // new Cliente {ID=1, Nombre="John Smith"},
+
+                //new Cliente {ID=2, Nombre="Mary Williams"}
+            };
+        }
     }
 }

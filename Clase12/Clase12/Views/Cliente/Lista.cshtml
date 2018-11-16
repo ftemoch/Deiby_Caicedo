@@ -8,44 +8,66 @@
 <p>
     @Html.ActionLink("Create new", "Nueva")
 </p>
-<table class="table table-bordered table-hover">
+<table id="Cliente" class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>Nombre</th>
             <th>Apellido</th>
+            <th></th><th></th>
             <!-- <th>salrio</th>
-    <th>Actividad</th>-->
-            
+            <th>Actividad</th>-->
+
 
         </tr>
     </thead>
 
     <tbody>
-        @foreach(var cliente in Model)
+        @foreach (var cliente in Model)
         {
-        <tr>
+            <tr>
 
 
-            <td>@cliente.Nombre</td>
-            <td>@cliente.Apellido</td>
-            <!--<td>cliente.Salario</td>
-    if (cliente.Activo == true)
-    {
-        <td>"Activo"</td>
-    }
-    else
-    {
-       <td>"Inactivo"</td>
-    }-->
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = cliente.ID }, null) |
+                <td>@cliente.Nombre</td>
+                <td>@cliente.Apellido</td>
+                <!--<td>cliente.Salario</td>
+                if (cliente.Activo == true)
+                {
+                    <td>"Activo"</td>
+                }
+                else
+                {
+                   <td>"Inactivo"</td>
+                }-->
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = cliente.ID }, null) 
+                </td>
+                    <!-- @Html.ActionLink("Delete", "Delete", new { id = cliente.ID }, null)-->
+                <td>
+                    <button data-customer-id="@cliente.ID" class="btn-link js-delete"> Borrar</button>
+                </td>
+
+
                 
-                @Html.ActionLink("Delete", "Borrar", new { id = cliente.ID }, null)
-                
-
-            </td>
-        </tr>
+            </tr>
         }
     </tbody>
 </table>
+@section scripts
+{
+    <script>
+       $(document).ready(function () {
+           $("#Cliente").DataTable();
+           $("#Cliente").on("click", ".js-delete", function (){
+               var button = $(this);
+               if (confirm("seguro")) {
+                   $.ajax({
+                       url: "/Cliente/Borrar/" + button.attr("data-customer-id"),
+                       success: function () {
+                           button.parents("tr").remove();
+                       }
+                   });
+               }
+           });
+       });
+    </script> }
 

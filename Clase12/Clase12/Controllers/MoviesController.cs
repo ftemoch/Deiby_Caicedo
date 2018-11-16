@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Clase12.Models;
@@ -43,11 +41,11 @@ namespace Clase12.Controllers
         {
             return new List<Movie>
             {
-                 //new Movie {ID=1, Nombre= "Sherk III"},
-                 //new Movie {ID=2, Nombre= "American Pie"}
+                //new Movie {ID=1, Nombre= "Sherk III"},
+                //new Movie {ID=2, Nombre= "American Pie"}
             };
         }
-        /*public ActionResult Genero()
+        public ActionResult Genero()
         {
             var tipoPelicula = _context.TipoPelicula.ToList();
             var viewModel = new NewPeliculaViewModel
@@ -56,75 +54,31 @@ namespace Clase12.Controllers
             };
 
             return View(viewModel);
-        }*/
+        }
         [HttpPost]
-        public ActionResult Create([Bind(Include = "ID,Nombre")]Movie movie)
+        public ActionResult Create(Movie movie)
         {
             _context.Movies.Add(movie);
             _context.SaveChanges();
             return RedirectToAction("ListaMovies", "Movies");
         }
-        /*public ActionResult Borrar()
+        public ActionResult Borrar(int id)
         {
-            var tipoPeliculas = _context.TipoPelicula.ToList();
-            var viewModel = new NewPeliculaViewModel
-            {
-                TipoPeliculas = tipoPeliculas
-            };
+            var movie = _context.Movies.Single(c => c.ID == id);
 
-            return View(viewModel);
-        }*/
-        public ActionResult Borrar(int? ID)
-        {
-            if(ID == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Cliente cliente = _context.Clientes.Find(ID);
-            if(cliente == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cliente);
-        }
-        [HttpPost, ActionName("Borrar")]
-        public ActionResult DeleteConfirmed(int ID)
-        {
-            Movie movie = _context.Movies.Find(ID);
-            _context.Movies.Remove(movie);
-            _context.SaveChanges();
-            return RedirectToAction("ListaMovies", "Movies");
-        }
-        /*public ActionResult Edit()
-        {
-            var tipoClientes = _context.TipoCliente.ToList();
-            var viewModel = new NewClienteViewModel
-            {
-                TipoClientes = tipoClientes
-            };
-
-            return View(viewModel);
-        }*/
-        public ActionResult Edit(int? ID)
-        {
-            if (ID == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Movie movie = _context.Movies.Find(ID);
             if (movie == null)
-            {
+
                 return HttpNotFound();
+            else
+            {
+
+                _context.Movies.Remove(movie);
+                _context.SaveChanges();
             }
-            return View(movie);
+
+            return RedirectToAction("ListaMovie", "Movies");
         }
-        [HttpPost]
-        public ActionResult Edit(Movie movie)
-        {
-            _context.Entry(movie).State = EntityState.Modified;
-            _context.SaveChanges();
-            return RedirectToAction("ListaMovies", "Movies");
-        }
+
 
     }
 }
